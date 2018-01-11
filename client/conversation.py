@@ -85,4 +85,4 @@ class Conversation(object):
             if input:
                 self.brain.query(input, self.wxbot)
             else:
-                self.mic.say("听不懂你说的啥?")
+                self.mic.say("听不懂你说的啥,再说一遍?")
