@@ -95,7 +95,7 @@ class TulingRobot(AbstractRobot):
                 if self.wxbot is not None and self.wxbot.my_account != {} \
                    and not self.profile['prefers_email']:
                     target = '微信'
-                self.mic.say(u'一言难尽啊，我给您发%s吧' % target, cache=True)
+                self.mic.say(u'不是一两句话能说清楚的，我给您发%s吧' % target, cache=True)
                 if sendToUser(self.profile, self.wxbot, u'回答%s' % msg, result):
                     self.mic.say(u'%s发送成功！' % target, cache=True)
                 else:
@@ -108,7 +108,7 @@ class TulingRobot(AbstractRobot):
         except Exception:
             self._logger.critical("Tuling robot failed to responsed for %r",
                                   msg, exc_info=True)
-            self.mic.say("哎，好累，我的大脑短路了 " +
+            self.mic.say("啊，我脑抽抽抽抽了 " +
                          "请稍后再试吧.", cache=True)
 
 
@@ -183,7 +183,7 @@ class Emotibot(AbstractRobot):
                     if not create_reminder(remind_event, remind_time):
                         result = u'创建提醒失败了'
             else:
-                result = u"哎,好累,我的大脑短路了,请稍后再试试."
+                result = u"哎,我脑子短路了,我要休息下."
             max_length = 200
             if 'max_length' in self.profile:
                 max_length = self.profile['max_length']
@@ -194,7 +194,7 @@ class Emotibot(AbstractRobot):
                 if self.wxbot is not None and self.wxbot.my_account != {} \
                    and not self.profile['prefers_email']:
                     target = '微信'
-                self.mic.say(u'一言难尽啊，我给您发%s吧' % target, cache=True)
+                self.mic.say(u'不是一两句话能说清楚的，我给您发%s吧' % target, cache=True)
                 if sendToUser(self.profile, self.wxbot, u'回答%s' % msg, result):
                     self.mic.say(u'%s发送成功！' % target, cache=True)
                 else:
@@ -208,8 +208,8 @@ class Emotibot(AbstractRobot):
         except Exception:
             self._logger.critical("Emotibot failed to responsed for %r",
                                   msg, exc_info=True)
-            self.mic.say("哎,好累,我的大脑短路了 " +
-                         "请稍后再试试.", cache=True)
+            self.mic.say("哎,好累,我脑抽抽抽抽了 " +
+                         "等下再来吧.", cache=True)
 
 
 def get_robot_by_slug(slug):
