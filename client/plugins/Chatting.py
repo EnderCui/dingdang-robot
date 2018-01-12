@@ -27,11 +27,11 @@ def handle(text, mic, profile, wxbot=None):
         wxbot -- wechat bot instance
     """
     if not any(word in text for word in [u"结束", u"停止", u"退出", u"不聊了"]):
-        mic.say(u"进入闲聊模式，现在跟我说说话吧", cache=True)
+        mic.say(u"你想聊啥，跟你有啥好聊的？", cache=True)
         mic.chatting_mode = True
         mic.skip_passive = True
     else:
-        mic.say(u"退出闲聊模式", cache=True)
+        mic.say(u"确定不要再聊两块钱儿的了？", cache=True)
         mic.skip_passive = False
         mic.chatting_mode = False
 
