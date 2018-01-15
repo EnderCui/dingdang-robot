@@ -89,6 +89,8 @@ class Brain(object):
         Arguments:
         text -- user input, typically speech, to be parsed by a plugin
         send_wechat -- also send the respondsed result to wechat
+
+        ender: thirdparty_call=true comes from wechatbot
         """
         if thirdparty_call:
             # check whether plugin is not allow to be call by thirdparty
@@ -102,6 +104,8 @@ class Brain(object):
 
         for plugin in self.plugins:
             for text in texts:
+                #ender: check if the keyword is a plugin keyword.
+                #ender: If user said a plugin keyword, need to get into the plugin app
                 if plugin.isValid(text) and self.isEnabled(plugin):
                     self._logger.debug("'%s' is a valid phrase for plugin " +
                                        "'%s'", text, plugin.__name__)

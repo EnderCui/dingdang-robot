@@ -287,11 +287,11 @@ class Mic:
                                   input=True,
                                   frames_per_buffer=CHUNK)
 
+        #ender: play high beep after receive voice keyword
         self.speaker.play(dingdangpath.data('audio', 'beep_hi.wav'))
 
         frames = []
-        # increasing the range # results in longer pause after command
-        # generation
+        # increasing the range results in longer pause after command generation
         lastN = [THRESHOLD * 1.2 for i in range(40)]
 
         for i in range(0, RATE / CHUNK * LISTEN_TIME):
@@ -312,6 +312,7 @@ class Mic:
                 self._logger.error(e)
                 continue
 
+        #ender: play low beep after receive voice command
         self.speaker.play(dingdangpath.data('audio', 'beep_lo.wav'))
 
         # save the audio data

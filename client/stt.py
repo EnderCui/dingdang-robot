@@ -788,6 +788,7 @@ def get_engine_by_slug(slug=None):
     if not slug or type(slug) is not str:
         raise TypeError("Invalid slug '%s'", slug)
 
+    #ender: get stt engine instance
     selected_engines = filter(lambda engine: hasattr(engine, "SLUG") and
                               engine.SLUG == slug, get_engines())
     if len(selected_engines) == 0:
@@ -803,7 +804,7 @@ def get_engine_by_slug(slug=None):
                               "dependencies, etc.)") % slug)
         return engine
 
-
+#ender: get STT engine instance
 def get_engines():
     def get_subclasses(cls):
         subclasses = set()

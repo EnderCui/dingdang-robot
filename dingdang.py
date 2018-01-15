@@ -42,6 +42,7 @@ class Dingdang(object):
         self._logger = logging.getLogger(__name__)
 
         # Create config dir if it does not exist yet
+        #ender: should create config file for the first run
         if not os.path.exists(dingdangpath.CONFIG_PATH):
             try:
                 os.makedirs(dingdangpath.CONFIG_PATH)
@@ -57,7 +58,7 @@ class Dingdang(object):
                                   dingdangpath.CONFIG_PATH)
 
         config_file = dingdangpath.config('profile.yml')
-        # Read config
+        #ender: Read config, get config informations
         self._logger.debug("Trying to read config file: '%s'", config_file)
         try:
             with open(config_file, "r") as f:
@@ -66,12 +67,14 @@ class Dingdang(object):
             self._logger.error("Can't open config file: '%s'", config_file)
             raise
 
+        #ender: prepare STT. if not setup, use default sphinx
         try:
             stt_engine_slug = self.config['stt_engine']
         except KeyError:
             stt_engine_slug = 'sphinx'
             logger.warning("stt_engine not specified in profile, defaulting " +
                            "to '%s'", stt_engine_slug)
+        #ender: create STT instance
         stt_engine_class = stt.get_engine_by_slug(stt_engine_slug)
 
         try:
@@ -100,6 +103,9 @@ class Dingdang(object):
         print("登录成功后，可以与自己的微信账号（不是文件传输助手）交互")
         self.wxBot.run(self.mic)
 
+
+    #ender: the main function of the robot
+    #ender: self代表的是类的实例。而self.class则指向类。
     def run(self):
         if 'first_name' in self.config:
             salutation = (u"%s 我能为您做什么?"
@@ -110,6 +116,7 @@ class Dingdang(object):
         persona = 'DINGDANG'
         if 'robot_name' in self.config:
             persona = self.config["robot_name"]
+        #ender: create conversation robot instance with config file.
         conversation = Conversation(persona, self.mic, self.config)
 
         # create wechat robot
@@ -122,6 +129,8 @@ class Dingdang(object):
             t.start()
 
         self.mic.say(salutation, cache=True)
+
+        #ender: this is the entrance of the robot
         conversation.handleForever()
 
 

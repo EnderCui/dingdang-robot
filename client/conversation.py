@@ -79,10 +79,12 @@ class Conversation(object):
 
             self._logger.debug("Started to listen actively with threshold: %r",
                                threshold)
+            #ender: receive the voice from the mic Phone
             input = self.mic.activeListenToAllOptions(threshold)
             self._logger.debug("Stopped to listen actively with threshold: %r",
                                threshold)
             if input:
+                self.mic.say("稍等。")
                 self.brain.query(input, self.wxbot)
             else:
                 self.mic.say("你说啥,没听清?")
