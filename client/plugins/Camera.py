@@ -68,6 +68,7 @@ def handle(text, mic, profile, wxbot=None):
             mic.say(u"抱歉，照片目录创建失败", cache=True)
             return
         dest_file = os.path.join(dest_path, "%s.jpg" % time.time())
+        #ender: 如果是USB摄像头，调用fswebcam拍照
         if usb_camera:
             command = "fswebcam --no-banner -r 1024x765 -q "
             if vertical_flip:
