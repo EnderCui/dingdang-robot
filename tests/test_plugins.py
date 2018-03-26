@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8-*-
-#testing SSH
+#testing SSH 2
 from nose.tools import *
 from client import test_mic, diagnose, dingdangpath
 from client.plugins import Time, Echo, Email, SendQR
